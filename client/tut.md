@@ -3,3 +3,4 @@
 3. We have to create a folder in the app directory everytime we want to route something and the under that folder a `page.tsx` file should exist, as it is the frontend part of that component.
 4. The `app/api` folder is the place where our backend rests.
 5. In api, you have to make some folders and the main file that runs there is `route.ts`.
+6. In recent versions of NEXTjs, everything is a server component. To convert a component as front ed comp. Just use `use client` on top of your file.
