@@ -5,8 +5,10 @@ import React ,{useEffect} from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+// import {connect} from '@/db/dbConfig';
 
 export default function SignupPage() {
+  // connect();
     const router = useRouter();
   const [user, setUser] = React.useState({
     email: "",
@@ -20,7 +22,7 @@ export default function SignupPage() {
     // As this method is going to talk to database, it is async;
     try {
       setloading(true);
-      const response = await axios.get("/api/users/signup",user);
+      const response = await axios.post("/api/users/signup",user);
       console.log("Signup siccess",response.data);
       router.push("/login");
     } catch (error:any) {
