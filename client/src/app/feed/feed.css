@@ -1,0 +1,11 @@
+#navbar{
+    display: flex;
+    height: 8vh;
+    background-color: rgb(200, 148, 246) !important;
+    justify-content: space-between;
+    border-bottom: 5px solid black !important;
+}
+#body{
+    height: 92vh !important;
+
+}

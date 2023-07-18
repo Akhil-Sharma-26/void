@@ -1,0 +1,15 @@
+.button{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+    justify-content: end;
+    width: 100%;
+    flex-basis: content;
+    /* width: fit-content; */
+}
+.logout{
+    flex-basis: content;
+    display: flex;
+    width: fit-content;
+    justify-content: end;
+}
