@@ -24,7 +24,7 @@ export default function Navbar() {
           <Button href="/feed" className="">
             Feed
           </Button>
-          <Button href="/">New</Button>
+          <Button href="/signup">New</Button>
           {/* <Button href="/profile">{ ?   "Profile" : "Signup"}</Button> */}
           <Button href="/profile">Profile</Button>
         </div>
