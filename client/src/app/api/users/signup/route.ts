@@ -14,9 +14,9 @@ export async function POST(request: NextRequest){
         console.log(reqBody); 
         //check if user already exists
         const user =  await User.findOne({email});
-        console.log("Hello");
+        // console.log("Hello");
         if(user){
-            console.log("hello");
+            // console.log("hello");
             return NextResponse.json({error:'user already exists'},{status: 400})
             // console.log(error);
         }
@@ -24,15 +24,15 @@ export async function POST(request: NextRequest){
         // hash password
         const salt=await bcryptjs.genSalt(10) // salt with 10 rounds
         const hashedPassword=await bcryptjs.hash(password, salt);
-        console.log("Hello again");
+        // console.log("Hello again");
         const newUser= new User({
             username,
             email,
             password: hashedPassword,
         });
-        console.log("Hello again 2");
+        // console.log("Hello again 2");
         const savedUser = await newUser.save(); //To save the user
-        console.log("Hello again 3");
+        // console.log("Hello again 3");
         console.log(savedUser);
         return NextResponse.json({
             message: "User created successfuly",
@@ -43,4 +43,4 @@ export async function POST(request: NextRequest){
         return NextResponse.json({error:error.message},{status: 500})
     }
 }
-console.log("Hello again 4");
+// console.log("Hello again 4");

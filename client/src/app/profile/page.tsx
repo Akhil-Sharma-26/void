@@ -18,10 +18,10 @@ export default function ProfilePage(){
             toast.error(error.message);
         }
     }
-    console.log("Hello profile");
+    // console.log("Hello profile");
     const [data,setdata]=React.useState("hello");
     const getUserDetails = async()=>{
-        console.log("Hello profile 2");
+        // console.log("Hello profile 2");
         const res=await axios.get('/api/users/me');
         console.log(res.data);
         setdata(res.data.data._id);
