@@ -66,7 +66,7 @@ export default function LoginPage() {
         >
         {buttonDisabled ? "no login" : "Login"}
       </button>
-      Don't Have an account?
+      Don&apos;t Have an account?
       <Link href="/signup">click here</Link>
     </div>
   );
