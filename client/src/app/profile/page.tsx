@@ -27,6 +27,9 @@ export default function ProfilePage(){
         setdata(res.data.data._id);
     }
     // ! use the useEffect hook to transfer the user to his own personal page whenever he lands on `/profile` page
+    React.useEffect(()=>{
+        getUserDetails();
+    },[])
     return(
         <>
         
