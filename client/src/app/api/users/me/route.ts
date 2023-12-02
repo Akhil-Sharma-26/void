@@ -6,8 +6,8 @@ import { connect } from "@/db/dbConfig";
 connect();
 export async function GET(request: NextRequest){
     try {
-        const userID=await getDatafromToken(request);
-        const user=await User.findOne({_id:userID}).select("-password");
+        let userID=await getDatafromToken(request);
+        let user=await User.findOne({_id:userID}).select("-password");
         return NextResponse.json({
             message: "user Found",
             data: user,

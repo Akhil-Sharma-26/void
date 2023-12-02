@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 export default function Navbar() {
     // const [loggedInUser,setloggedInUser] = React.useState(()=>{loggedInUser(false)});
     return (
-    <div className="overflow-scroll">
+    <div className="">
       <nav className="text-black items-center font-mont text-2xl" id="navbar">
         <div className="items-start">
           <Image

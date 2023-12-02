@@ -19,12 +19,12 @@ export default function LoginPage() {
     // As this method is going to talk to database, it is async
     try {
       setloading(true);
-      const response=await axios.post("/api/users/login",user);
+      let response=await axios.post("/api/users/login",user);
       console.log("Login success",response.data);
       toast.success("login success");
       router.push("/profile");
     } catch (error:any) {
-      console.log("Login failed",error.message);
+      console.log("Login failed lol;",error.message);
       toast.error(error.message);
     }
     finally {
