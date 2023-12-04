@@ -39,19 +39,19 @@ export default function LoginPage() {
     }
   },[user]);
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 p-3 content-evenly ">
-      <h1>{loading ? "Loading" : "Login"}</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 p-3 content-evenly bg-gradient-to-tr bg-zinc-800">
+      <h1 className="text-4xl font-mono p-5 font-bold invert" >{loading ? "Loading" : "Login"}</h1>
       <hr />
-      <label htmlFor="email" className="font-bold">email</label>
+      <label htmlFor="email" className="font-bold font-mono invert">E-mail</label>
       <input
-        className="p-2 text-black"
+        className="p-2 text-black "
         type="email"
         id="email"
         value={user.email}
         onChange={(e) => setUser({ ...user, email: e.target.value })}
         placeholder="email"
       />
-      <label htmlFor="password" className="font-bold">password</label>
+      <label htmlFor="password" className="font-bold pt-5 font-mono invert">Password</label>
       <input
         className="p-2 text-black"
         type="password"
@@ -65,9 +65,11 @@ export default function LoginPage() {
         className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
         {buttonDisabled ? "no login" : "Login"}
-      </button>
-      Don&apos;t Have an account?
-      <Link href="/signup">click here</Link>
+      </button> 
+      <div className="pt-5 invert font-mono">
+      Don&apos;t have an account?
+      </div>
+      <Link href="/signup" className="invert underline font-mono font-extrabold">Click Here</Link>
     </div>
   );
 }

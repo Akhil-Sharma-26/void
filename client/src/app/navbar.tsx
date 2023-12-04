@@ -14,7 +14,7 @@ export default function Navbar() {
             alt="logo"
             width={100}
             height={20}
-            className="ml-16 dark:invert"
+            className="ml-16 invert"
           />
         </div>
         <div className="flex mr-16 items-end justify-between w-1/4">
