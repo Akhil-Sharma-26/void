@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-// import Router from "next/router"; wrong
+import { ToastContainer, toast } from "react-toastify";  
+import "react-toastify/dist/ReactToastify.css";  
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { toast } from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -39,6 +39,8 @@ export default function LoginPage() {
     }
   },[user]);
   return (
+    <>
+    <ToastContainer/>
     <div className="flex flex-col items-center justify-center min-h-screen py-2 p-3 content-evenly bg-gradient-to-tr bg-zinc-800">
       <h1 className="text-4xl font-mono p-5 font-bold " >{loading ? "Loading" : "Login"}</h1>
       <hr />
@@ -71,5 +73,6 @@ export default function LoginPage() {
       </div>
       <Link href="/signup" className=" underline font-mono font-extrabold">Click Here</Link>
     </div>
+    </>
   );
 }

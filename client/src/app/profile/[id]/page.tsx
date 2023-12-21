@@ -4,6 +4,9 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { sendEmail } from "@/helpers/mailer";
 import User from "@/models/userModel";
+// import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";  
+import "react-toastify/dist/ReactToastify.css";  
 // const router=useRouter();
 export default function UserProfile({ params }: any) {
   // console.log(params.id.username);
@@ -11,6 +14,7 @@ export default function UserProfile({ params }: any) {
   const [loggedInusername, setloggedInusername] = React.useState("");
   const [loggedInemail, setloggedInemail] = React.useState("");
   const [loggedUserID, setUserID] = React.useState("");
+  const [isEmailSent, setIsEmailSent] = React.useState(false);
   React.useEffect(() => {
     const fetchedusername = async () => {
       try{
@@ -38,14 +42,22 @@ export default function UserProfile({ params }: any) {
     }
 }
 const sendemail = async () => {
-  try {
-    let result = await axios.post("/api/users/sendemail", { email: loggedInemail, emailType: "VERIFY", userID: loggedUserID });
-    console.log(result);
-  } catch (error) {
-    console.error(error);
+  if (!isEmailSent) {
+    try {
+      let result = await axios.post("/api/users/sendemail", { email: loggedInemail, emailType: "VERIFY", userID: loggedUserID });
+      console.log(result);
+      if (result.data.success) {
+        toast.success("Email sent successfully. Please Check your Mail box. Also check your spam folder.");
+        setIsEmailSent(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 };
   return (
+    <>
+    <ToastContainer/>
     <div className="items-center  flex flex-col min-h-screen py-2 justify-center">
       <p className="text-xl">
         Hello 
@@ -63,5 +75,6 @@ const sendemail = async () => {
             </div>
         </button>
     </div>
+    </>
   );
 }

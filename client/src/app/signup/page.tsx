@@ -4,9 +4,11 @@ import React ,{useEffect} from "react";
 // import Router from "next/router"; wrong
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 // import {connect} from '@/db/dbConfig';
 
+import { ToastContainer, toast } from "react-toastify";  
+import "react-toastify/dist/ReactToastify.css";  
 export default function SignupPage() {
   // connect();
     const router = useRouter();
@@ -24,10 +26,11 @@ export default function SignupPage() {
       setloading(true);
       const response = await axios.post("/api/users/signup",user);
       console.log("Signup siccess",response.data);
+      toast.success("Signup success");
       router.push("/login");
     } catch (error:any) {
       console.log("Signup failed",error.message);
-      toast.error(error.message);
+      toast.error("Error in sign-up",error.message);
     }
     finally{
       setloading(false); // after some time, loading has to go away
@@ -44,6 +47,8 @@ export default function SignupPage() {
     }
   },[user]);
   return (
+    <>
+    <ToastContainer/>
     <div className="flex flex-col items-center justify-center min-h-screen py-2 p-3 content-evenly ">
       <h1>{loading ? "Processing" : "SignUp"}</h1>
       <hr />
@@ -84,5 +89,6 @@ export default function SignupPage() {
       Already have an account?
       <Link href="/login">click here</Link>
     </div>
+    </>
   );
 }

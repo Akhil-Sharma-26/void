@@ -2,6 +2,8 @@
 import axios from "axios";
 import Link from "next/link";
 import React from "react";  
+import { ToastContainer, toast } from "react-toastify";  
+import "react-toastify/dist/ReactToastify.css";  
 export default function VerifyEmailPage(){
     const [token,settoken]=React.useState("");
     const [verified,setverified]=React.useState(false);
@@ -9,6 +11,7 @@ export default function VerifyEmailPage(){
     const verifyUserEmail=async()=>{
         try {
             await axios.post('/api/users/email',{token});
+            toast.success("Email verified. Enjoy your stay!");
             setverified(true);
         } catch (error: any) {
             seterror(true);
@@ -25,17 +28,20 @@ export default function VerifyEmailPage(){
         }
     },[token]);
     return(
+        <>
+        <ToastContainer/>
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-5xl">Verify your email</h1>
+            <h1 className="text-5xl">Verifing your email. Please wait...</h1>
             <h2 className="p-2 bg-orange-500 text-black">{token? `${token}`:"no token"}</h2>
             {verified &&(<div>
                 <h2 className="text-2xl">Email Verified</h2>
-                <Link href="/login">Login</Link>
+                <Link href="/" className="bg-green-500">Home Page</Link>
             </div>)}
             {error &&(<div>
                 <h2 className="text-2xl bg-red-600 text-black">error</h2>
-                {/* <Link href="/login">Login</Link> */}
+                <Link href="/login">Login</Link>
             </div>)}
         </div>
+        </>
     )
 }
