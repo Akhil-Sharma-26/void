@@ -21,8 +21,10 @@ export async function POST(request:NextRequest){
         user.verifyTokenExpiry=undefined;
         console.log("hello email");
         await user.save(); // await is very important
-        return NextResponse.json({success:true,
-        message:"Email Verified Successfulllly"});
+        return NextResponse.json({
+            message:"Email Verified Successfulllly",
+            success:true,
+        });
     } catch (error:any) {
         return NextResponse.json({error:error.message},{status:500});
     }
