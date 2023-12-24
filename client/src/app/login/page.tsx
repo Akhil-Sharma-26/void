@@ -72,6 +72,9 @@ export default function LoginPage() {
       Don&apos;t have an account?
       </div>
       <Link href="/signup" className=" underline font-mono font-extrabold">Click Here</Link>
+      <div>
+      <Link href="/forgotpassword" className=" underline font-mono font-extrabold">Forgot Password?</Link>
+      </div>
     </div>
     </>
   );
