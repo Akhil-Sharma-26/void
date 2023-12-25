@@ -57,9 +57,9 @@ export default function UserProfile({ params }: any) {
       }
     }
   };
-  const forgotPassword = async()=>{
+  const changePassword = async()=>{
     try {
-      let res=await axios.post('api/users/forgotpassword',{email:loggedInemail});
+      // let res=await axios.post('api/users/forgotpassword',{email:loggedInemail});
       toast.warn("Work Under Progress!!");
     } catch (error:any) {
       console.log(error.message);
@@ -94,7 +94,7 @@ export default function UserProfile({ params }: any) {
             </div>
           </div>
         )}
-        <button className="bg-orange-500 mt-4 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" id="button" onClick={forgotPassword}>
+        <button className="bg-orange-500 mt-4 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" id="button" onClick={changePassword}>
             <div className="logout">
               Change Password
             </div>
