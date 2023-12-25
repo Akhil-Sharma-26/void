@@ -4,7 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 
 export default function Feed() {
-  const [posts, setPosts] = React.useState([]);
+  // const [posts, setPosts] = React.useState([]);
 
   // React.useEffect(() => {
   //   const fetchPosts = async () => {
@@ -20,15 +20,15 @@ export default function Feed() {
   // }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-4 overflow-scroll">
-      {posts.map(post => (
-        <div key="helo" className="max-w-sm rounded overflow-hidden shadow-lg m-2">
-          <Image className="w-full" src='/favicon' alt="helo" width={500} height={500} objectFit="cover" />
-          <div className="px-6 py-4">
-            <p className="text-gray-700 text-base">"heqd</p>
-          </div>
+    <div className="flex flex-col items-center min-w-full">
+      <div className="min-w-full flex flex-col items-center min-h-screen">
+        <h1 className="text-4xl font-mono p-5 font-bold ">Feed</h1>
+        <hr />
+        <div>
+          <p className="text-xl font-mono pb-5">Welcome to the feed</p>
         </div>
-      ))}
+        <hr /> 
+      </div>
     </div>
   );
 }
