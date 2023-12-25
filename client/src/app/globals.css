@@ -35,3 +35,12 @@ body {
   justify-content: space-between;
   border-bottom: 5px solid black !important;
 }
+body{
+  /* height: 92vh !important; */
+}
+*{
+  scroll-behavior: smooth;
+  scrollbar-width: hidden;
+  /* height: 92vh !important; Don't*/ 
+
+}

@@ -4,7 +4,7 @@ import Image from "next/image";
 import "./globals.css";
 import { Button } from "@mui/material";
 export default function Navbar() {
-    // const [loggedInUser,setloggedInUser] = React.useState(()=>{loggedInUser(false)});
+    const [loggedInUser,setloggedInUser] = React.useState(false);
     return (
     <div className="">
       <nav className="text-black items-center font-mont text-2xl" id="navbar">
