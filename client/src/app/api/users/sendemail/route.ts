@@ -1,7 +1,10 @@
 import nodemailer from "nodemailer";
 import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
-export const sendEmail = async ({ email, emailType, userID }: any) => {
+import { NextRequest, NextResponse } from "next/server";
+export async function POST (request: NextRequest){
+    const reqBody=await request.json();
+    const {email,emailType,userID}=reqBody;
   try {
     // hashing the token
     const hashedToken = await bcryptjs.hash(userID.toString(), 10); // 10 round of hashing. tostring() ,is a function, for changing the userID to string
@@ -20,16 +23,19 @@ export const sendEmail = async ({ email, emailType, userID }: any) => {
         forgotPasswordTokenExpiry: Date.now() + 3600000,
       });
     }
+    console.log(process.env.MAIL, process.env.PASS)
     var transport = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: process.env.MAIL,
+          user: "akhil26sharma04@gmail.com",
           pass: process.env.PASS
         }
       });
-
+      console.log(email);
+      console.log(emailType);
+      console.log(userID);
       const mailOption={
-        from: "a.sharma1.be26@gmail.com",
+        from: "akhil26sharma04@gmail.com",
         to:email,
         subject: emailType ==="VERIFY" ? "Verify your email" : "Reset your password",
         html: `<p>
@@ -40,8 +46,12 @@ export const sendEmail = async ({ email, emailType, userID }: any) => {
         
       }
       const mailresponse =await transport.sendMail(mailOption);
-      return mailresponse;
+      return NextResponse.json({
+        message: `Email sent to ${email}`,
+        success: true,
+        });
   } catch (error: any) {
-    throw new Error(error.message);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+    // throw new Error(error.message);
   }
 };

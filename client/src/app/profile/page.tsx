@@ -4,7 +4,9 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
+import { ToastContainer, toast } from "react-toastify";  
+import "react-toastify/dist/ReactToastify.css";  
 export default function ProfilePage(){
     const router=useRouter();
     const logout=async()=>{
@@ -19,17 +21,21 @@ export default function ProfilePage(){
         }
     }
     // console.log("Hello profile");
-    const [data,setdata]=React.useState("hello");
+    const [data,setdata]=React.useState("");
     const getUserDetails = async()=>{
         // console.log("Hello profile 2");
         const res=await axios.get('/api/users/me');
         console.log(res.data);
-        setdata(res.data.data._id);
+        setdata(res.data.data.username);
     }
     // ! use the useEffect hook to transfer the user to his own personal page whenever he lands on `/profile` page
+    React.useEffect(()=>{
+        getUserDetails();
+        router.push(`/profile/${data}`);
+    },[data])
     return(
         <>
-        
+        <ToastContainer/>
         <nav><button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="button" onClick={logout}>
             <div className="logout">
             Logout

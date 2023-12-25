@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-// import Router from "next/router"; wrong
+import { ToastContainer, toast } from "react-toastify";  
+import "react-toastify/dist/ReactToastify.css";  
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { toast } from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -19,12 +19,12 @@ export default function LoginPage() {
     // As this method is going to talk to database, it is async
     try {
       setloading(true);
-      const response=await axios.post("/api/users/login",user);
+      let response=await axios.post("/api/users/login",user);
       console.log("Login success",response.data);
       toast.success("login success");
       router.push("/profile");
     } catch (error:any) {
-      console.log("Login failed",error.message);
+      console.log("Login failed lol;",error.message);
       toast.error(error.message);
     }
     finally {
@@ -39,19 +39,21 @@ export default function LoginPage() {
     }
   },[user]);
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 p-3 content-evenly ">
-      <h1>{loading ? "Loading" : "Login"}</h1>
+    <>
+    <ToastContainer/>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 p-3 content-evenly bg-gradient-to-tr bg-zinc-800">
+      <h1 className="text-4xl font-mono p-5 font-bold " >{loading ? "Loading" : "Login"}</h1>
       <hr />
-      <label htmlFor="email" className="font-bold">email</label>
+      <label htmlFor="email" className="font-bold font-mono ">E-mail</label>
       <input
-        className="p-2 text-black"
+        className="p-2 text-black "
         type="email"
         id="email"
         value={user.email}
         onChange={(e) => setUser({ ...user, email: e.target.value })}
         placeholder="email"
       />
-      <label htmlFor="password" className="font-bold">password</label>
+      <label htmlFor="password" className="font-bold pt-5 font-mono ">Password</label>
       <input
         className="p-2 text-black"
         type="password"
@@ -65,9 +67,15 @@ export default function LoginPage() {
         className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
         {buttonDisabled ? "no login" : "Login"}
-      </button>
-      Don&apos;t Have an account?
-      <Link href="/signup">click here</Link>
+      </button> 
+      <div className="pt-5  font-mono">
+      Don&apos;t have an account?
+      </div>
+      <Link href="/signup" className=" underline font-mono font-extrabold">Click Here</Link>
+      <div>
+      <Link href="/forgotpassword" className=" underline font-mono font-extrabold">Forgot Password?</Link>
+      </div>
     </div>
+    </>
   );
 }
