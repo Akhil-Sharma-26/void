@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 export default function initPage (){
-    const router = useRouter();
+    // const router = useRouter();
     const [Email, setemail] = React.useState("")
     const [buttonDisabled,setbuttonDisabled]=React.useState(false);
     const [loading,setloading]=React.useState(false);

@@ -41,7 +41,7 @@ export async function POST (request: NextRequest){
         html: emailType==="VERIFY" ? `<p>
             Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType ==="VERIFY" ? "Verify your email" : "Reset your password"} <br/> Or copy and paste the following link into your browser. <br/> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
         </p>` : `<p>
-            Click <a href="${process.env.DOMAIN}/forgotpassword?${hashedToken}">here</a> to ${emailType ==="VERIFY" ? "Verify your email" : "Reset your password"} <br/> Or copy and paste the following link into your browser. <br/> ${process.env.DOMAIN}/forgotpassword?${hashedToken}
+            Click <a href="${process.env.DOMAIN}/forgotpassword/lol?token=${hashedToken}">here</a> to ${emailType ==="VERIFY" ? "Verify your email" : "Reset your password"} <br/> Or copy and paste the following link into your browser. <br/> ${process.env.DOMAIN}/forgotpassword/lol?token=${hashedToken}
             </p>`,
         //TODO:
         // Edit the env variable before deployment.
