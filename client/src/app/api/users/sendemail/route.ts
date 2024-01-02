@@ -17,7 +17,7 @@ export async function POST (request: NextRequest){
         verifyTokenExpiry: Date.now() + 3600000,
       });
     } 
-    else if (emailType === "RESET") { // for FORGOT PASSWORD
+    else if (emailType === "FORGOTPASS") { // for FORGOT PASSWORD
       await User.findByIdAndUpdate(userID, {
         forgotPasswordToken: hashedToken,
         forgotPasswordTokenExpiry: Date.now() + 3600000,
@@ -38,9 +38,11 @@ export async function POST (request: NextRequest){
         from: "akhil26sharma04@gmail.com",
         to:email,
         subject: emailType ==="VERIFY" ? "Verify your email" : "Reset your password",
-        html: `<p>
+        html: emailType==="VERIFY" ? `<p>
             Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType ==="VERIFY" ? "Verify your email" : "Reset your password"} <br/> Or copy and paste the following link into your browser. <br/> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
-        </p>`,
+        </p>` : `<p>
+            Click <a href="${process.env.DOMAIN}/forgotpassword/lol?token=${hashedToken}">here</a> to ${emailType ==="VERIFY" ? "Verify your email" : "Reset your password"} <br/> Or copy and paste the following link into your browser. <br/> ${process.env.DOMAIN}/forgotpassword/lol?token=${hashedToken}
+            </p>`,
         //TODO:
         // Edit the env variable before deployment.
         
