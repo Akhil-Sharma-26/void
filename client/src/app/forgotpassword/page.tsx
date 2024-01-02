@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-export default function initPage (){
+export default function InitPage (){
     // const router = useRouter();
     const [Email, setemail] = React.useState("")
     const [buttonDisabled,setbuttonDisabled]=React.useState(false);

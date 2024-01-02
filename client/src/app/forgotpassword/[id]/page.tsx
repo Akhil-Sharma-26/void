@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-export default function forgotPassword({ params }: any) {
+export default function ForgotPassword({ params }: any) {
     const [token, settoken] = React.useState("");
     const [verified, setverified] = React.useState(false);
     const [password, setpassword] = React.useState("");
