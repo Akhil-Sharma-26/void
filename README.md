@@ -5,7 +5,7 @@
 ## TODO
 - [x] Simpler Hashing for email_verification token, As the current hashing pattern disrupts the URL.
 - [x] Button on the profile page for email verification and forgot password. using `useState` hook.
-- [ ] backend of `forget-password` 
+- [x] backend of `forget-password` 
 - [ ] Editing the `unique` page of every user at `/profile/[id]`
 - [ ] Improving the overall UI of the app.
 - [x] Implementation of `toasts`
