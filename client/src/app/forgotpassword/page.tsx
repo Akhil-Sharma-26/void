@@ -8,14 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 export default function InitPage (){
     // const router = useRouter();
     const [Email, setemail] = React.useState("")
-    const [buttonDisabled,setbuttonDisabled]=React.useState(false);
-    const [loading,setloading]=React.useState(false);
     const [userID,setuserID]=React.useState("");
 
     const getUserDetails = async()=>{
         // console.log("Hello profile 2");
         try {
             console.log(Email)
+            toast.loading("Fetching user details. Please wait. Don't click the button again.");
             const res = await axios.post('/api/users/getuserid',{email:Email});
             console.log("Hello profile 3")
             console.log(res.data);
@@ -29,12 +28,16 @@ export default function InitPage (){
     const sendemail = async () => {
         try {
           getUserDetails();
+          toast.loading("Sending email.");
+          toast.warning("Please wait for 5 seconds before clicking the button again. If it shows error 500, then wait for 1 minute before clicking the button again. If it still shows error 500, then contact the admin.");
           let response = await axios.post("/api/users/sendemail", {email : Email,emailType: "FORGOTPASS", userID: userID});
+          toast.dismiss();
           console.log("Email sent", response.data);
           toast.success("Email sent successfully. Please Check your Mail box. Also check your spam folder. Follow the steps in the email to reset your password.");
         } catch (error: any) {
           console.log("forgot password failed lol;", error.message);
           toast.error(error.message);
+          
         }
       }
     return (

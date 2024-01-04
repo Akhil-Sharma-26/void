@@ -10,6 +10,7 @@ export default function VerifyEmailPage(){
     const [error,seterror]=React.useState(false);
     const verifyUserEmail=async()=>{
         try {
+            toast.loading("Verifying email");
             await axios.post('/api/users/email',{token});
             toast.success("Email verified. Enjoy your stay!");
             setverified(true);

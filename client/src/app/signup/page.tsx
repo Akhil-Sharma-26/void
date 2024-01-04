@@ -24,13 +24,14 @@ export default function SignupPage() {
     // As this method is going to talk to database, it is async;
     try {
       setloading(true);
+      toast.loading("Signing up. Please wait!");
       const response = await axios.post("/api/users/signup",user);
       console.log("Signup siccess",response.data);
       toast.success("Signup success");
       router.push("/login");
     } catch (error:any) {
       console.log("Signup failed",error.message);
-      toast.error("Error in sign-up",error.message);
+      toast.error("Error in sign-up, Please fill up all fields",error.message);
     }
     finally{
       setloading(false); // after some time, loading has to go away
@@ -85,9 +86,21 @@ export default function SignupPage() {
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         placeholder="password"
       />
-      <button onClick={onSignup} className="border">{buttonDisabled ? "No signup" : "SignUp"} </button>
+      {buttonDisabled ? (<button 
+        onClick={onSignup}
+        className="bg-red-500 mt-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled"
+        >
+        Signup
+      </button>) : (
+        <button 
+        onClick={onSignup}
+        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+        >
+        Signup
+      </button>
+      )}
       Already have an account?
-      <Link href="/login">click here</Link>
+      <Link href="/login" className="underline">click here</Link>
     </div>
     </>
   );

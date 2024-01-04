@@ -19,6 +19,7 @@ export default function LoginPage() {
     // As this method is going to talk to database, it is async
     try {
       setloading(true);
+      toast.loading("Logging in. Please wait!");
       let response=await axios.post("/api/users/login",user);
       console.log("Login success",response.data);
       toast.success("login success");
@@ -41,7 +42,7 @@ export default function LoginPage() {
   return (
     <>
     <ToastContainer/>
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 p-3 content-evenly bg-gradient-to-tr bg-zinc-800">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 p-3 content-evenly bg-gradient-to-tr bg-zinc-800 text-white">
       <h1 className="text-4xl font-mono p-5 font-bold " >{loading ? "Loading" : "Login"}</h1>
       <hr />
       <label htmlFor="email" className="font-bold font-mono ">E-mail</label>
@@ -62,12 +63,19 @@ export default function LoginPage() {
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         placeholder="password"
       />
-      <button 
+      {buttonDisabled ? (<button 
         onClick={onLogin}
-        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-red-500 mt-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled"
         >
-        {buttonDisabled ? "no login" : "Login"}
-      </button> 
+        Login
+      </button>) : (
+        <button 
+        onClick={onLogin}
+        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+        >
+        Login
+      </button>
+      )}
       <div className="pt-5  font-mono">
       Don&apos;t have an account?
       </div>

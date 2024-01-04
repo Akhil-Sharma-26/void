@@ -19,6 +19,7 @@ export default function UserProfile({ params }: any) {
   React.useEffect(() => {
     const fetchedusername = async () => {
       try {
+        // toast.loading("Fetching user details");
         const res = await axios.get("/api/users/me");
         setloggedInusername(res.data.data.username);
         setloggedInemail(res.data.data.email);
@@ -34,6 +35,7 @@ export default function UserProfile({ params }: any) {
   const router = useRouter();
   const logout = async () => {
     try {
+      toast.loading("Logging out");
       axios.get('/api/users/logout');
       console.log('logged out');
       toast.success(`User logged out`);
@@ -46,8 +48,10 @@ export default function UserProfile({ params }: any) {
   const sendemail = async () => {
     if (!isEmailSent) {
       try {
+        toast.loading("Sending email. Please don't click the button again.");
         let result = await axios.post("/api/users/sendemail", { email: loggedInemail, emailType: "VERIFY", userID: loggedUserID });
         console.log(result);
+        toast.dismiss();
         if (result.data.success) {
           toast.success("Email sent successfully. Please Check your Mail box. Also check your spam folder.");
           setIsEmailSent(true);
@@ -70,9 +74,13 @@ export default function UserProfile({ params }: any) {
     <>
       <ToastContainer />
       <div className="items-center flex flex-col min-h-screen py-2 justify-center">
-        <p className="text-xl">
-          Hello
-          <span className="p-2 rounded bg-purple-500">{loggedInusername}</span>
+        <p className="text-xl flex flex-col justify-center items-center ">
+          Hey There! 
+          <br />
+          You are logged in as:
+          <span className="p-2 rounded bg-purple-500 pb">{loggedInusername}</span>
+          <br />
+          Your email is:
           <span className="p-2 rounded bg-blue-500">{loggedInemail}</span>
         </p>
         <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="button" onClick={logout}>

@@ -11,6 +11,7 @@ export default function ProfilePage(){
     const router=useRouter();
     const logout=async()=>{
         try {
+            toast.loading("Logging out");
             axios.get('/api/users/logout');
             console.log('logged out');
             toast.success(`User logged out`);
@@ -24,6 +25,7 @@ export default function ProfilePage(){
     const [data,setdata]=React.useState("");
     const getUserDetails = async()=>{
         // console.log("Hello profile 2");
+        toast.loading("Fetching user details");
         const res=await axios.get('/api/users/me');
         console.log(res.data);
         setdata(res.data.data.username);

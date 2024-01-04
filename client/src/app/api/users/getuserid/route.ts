@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     console.log(email);
     console.log(reqBody);
     try {
-        let finduser = await User.findOne({ email: email });
+        let finduser = await User.findOne({ email: email }).select("-password");
         console.log(finduser);
             return NextResponse.json({
                 message: "user Found",
