@@ -15,6 +15,9 @@ export default function LoginPage() {
   });
   const [buttonDisabled,setbuttonDisabled]=React.useState(false);
   const [loading,setloading]=React.useState(false);
+  function warn(){
+    toast.warning("Please make sure that both the fields are filled");
+  }
   const onLogin = async () => {
     // As this method is going to talk to database, it is async
     try {
@@ -64,8 +67,8 @@ export default function LoginPage() {
         placeholder="password"
       />
       {buttonDisabled ? (<button 
-        onClick={onLogin}
-        className="bg-red-500 mt-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled"
+        onClick={warn}
+        className="bg-red-500 mt-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded "
         >
         Login
       </button>) : (

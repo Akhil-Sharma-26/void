@@ -47,6 +47,9 @@ export default function SignupPage() {
       setbuttonDisabled(true);
     }
   },[user]);
+  function warn(){
+    toast.warning("Please make sure that all the fields are filled and password is atleast 8 characters long");
+  }
   return (
     <>
     <ToastContainer/>
@@ -87,8 +90,8 @@ export default function SignupPage() {
         placeholder="password"
       />
       {buttonDisabled ? (<button 
-        onClick={onSignup}
-        className="bg-red-500 mt-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled"
+        onClick={warn}
+        className="bg-red-500 mt-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded "
         >
         Signup
       </button>) : (
