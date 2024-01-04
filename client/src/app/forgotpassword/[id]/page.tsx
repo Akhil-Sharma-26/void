@@ -63,7 +63,7 @@ export default function ForgotPassword({ params }: any) {
         )
         :(
             verified ? (
-                <div className="flex flex-col items-center justify-center min-h-screen py-2  content-evenly bg-gradient-to-tr bg-zinc-800 ">
+                <div className="flex flex-col items-center justify-center min-h-screen py-2  content-evenly bg-gradient-to-tr bg-zinc-800 text-white">
                     <h1 className="text-4xl font-mono p-5 font-bold ">Forgot Password</h1>
                     <hr />
                     <div>
