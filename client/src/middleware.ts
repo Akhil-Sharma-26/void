@@ -21,6 +21,8 @@ export const config = {
     '/profile',
     '/login',
     '/signup',
+    '/changepass',
+    // '/profile/*',
   ]
 }
 // ! Add the  middleware for ` profile/* ` too
