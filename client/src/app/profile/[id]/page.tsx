@@ -63,8 +63,7 @@ export default function UserProfile({ params }: any) {
   };
   const changePassword = async()=>{
     try {
-      // let res=await axios.post('api/users/forgotpassword',{email:loggedInemail});
-      toast.warn("Work Under Progress!!");
+      router.push(`/changepass/lol?token=${loggedUserID}`);
     } catch (error:any) {
       console.log(error.message);
       toast.error(error.message);
