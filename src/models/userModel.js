@@ -26,7 +26,7 @@
       forgotPasswordTokenExpiry: Date,
       verifyToken: String,
       verifyTokenExpiry: Date,
-  })
+  },{timestamps: true})
   // in MDB, Eervything is lowercase and pluralised
   /// There was a bug here in the below line, which was that the name of the schema I was giving in the 2 conditions were not same
   const User=mongoose.models.User || mongoose.model("User",userSchema); // User==users are not same.
