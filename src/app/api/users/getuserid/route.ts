@@ -12,11 +12,11 @@ export async function POST(request: NextRequest) {
     console.log(reqBody);
     try {
         let finduser = await User.findOne({ email: email }).select("-password");
-        console.log(finduser);
-            return NextResponse.json({
-                message: "user Found",
-                data: finduser,
-            })
+        // console.log(finduser);
+        if(!finduser){
+            return NextResponse.json({ error: "User not found" }, { status: 404  });
+        }
+        return NextResponse.json({ data: finduser }, { status: 200 });
 
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 400 });

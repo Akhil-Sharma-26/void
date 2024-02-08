@@ -15,19 +15,35 @@ export default function InitPage (){
         try {
             console.log(Email)
             toast.loading("Fetching user details. Please wait. Don't click the button again.");
+            toast.dismiss();
             const res = await axios.post('/api/users/getuserid',{email:Email});
             console.log("Hello profile 3")
+            toast.info("User details fetched successfully.");
             console.log(res.data);
-            setuserID(res.data.data._id);
+            console.log(res.data.data._id);
+            if(res) {
+              setuserID(res.data.data._id);
+              return res.data.data._id;
+            }
+            return null
         }
         catch (error:any) {
-            toast.error(error.message==400 ? "User not found" : error.message );
-            console.log(error);
+            toast.error( error.response.data.error);
+            console.log("Error in fetching user details", error);
+            // console.log(error);
         }
     }
     const sendemail = async () => {
         try {
-          getUserDetails();
+          const userID = await getUserDetails(); 
+          if(!userID){
+            toast.error("Email not found. You entered the wrong email!");
+            return;
+        } 
+          // if (!userID) {
+          //   toast.error("Check your email. If it is correct, click once again.");
+          //   return;
+          // }
           toast.loading("Sending email.");
           toast.warning("Please wait for 5 seconds before clicking the button again. If it shows error 500, then wait for 1 minute before clicking the button again. If it still shows error 500, then contact the admin.");
           let response = await axios.post("/api/users/sendemail", {email : Email,emailType: "FORGOTPASS", userID: userID});
